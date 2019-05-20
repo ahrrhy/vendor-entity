@@ -209,6 +209,7 @@ class VendorRepository implements \Stanislavz\VendorEntity\Api\VendorRepositoryI
             );
         }
         $searchResults->setItems($vendor);
+
         return $searchResults;
     }
 }
