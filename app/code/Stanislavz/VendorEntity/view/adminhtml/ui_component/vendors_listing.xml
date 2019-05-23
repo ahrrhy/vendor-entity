@@ -36,19 +36,19 @@
         <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
         <exportButton name="export_button"/>
-        <massaction name="listing_massaction">
-            <action name="delete">
-                <settings>
-                    <confirm>
-                        <message translate="true">Are you sure you want to delete selected items?</message>
-                        <title translate="true">Delete items</title>
-                    </confirm>
-                    <url path="vendorentity/vendors/massDelete"/>
-                    <type>delete</type>
-                    <label translate="true">Delete</label>
-                </settings>
-            </action>
-        </massaction>
+<!--        <massaction name="listing_massaction">-->
+<!--            <action name="delete">-->
+<!--                <settings>-->
+<!--                    <confirm>-->
+<!--                        <message translate="true">Are you sure you want to delete selected items?</message>-->
+<!--                        <title translate="true">Delete items</title>-->
+<!--                    </confirm>-->
+<!--                    <url path="vendorentity/vendors/massDelete"/>-->
+<!--                    <type>delete</type>-->
+<!--                    <label translate="true">Delete</label>-->
+<!--                </settings>-->
+<!--            </action>-->
+<!--        </massaction>-->
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="vendors_columns">

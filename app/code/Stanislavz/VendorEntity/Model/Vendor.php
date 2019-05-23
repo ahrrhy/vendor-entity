@@ -32,6 +32,7 @@ class Vendor extends AbstractModel
 
     protected $_cacheTag = self::CACHE_TAG;
 
+
     /**
      * {@inheritDoc}
      */

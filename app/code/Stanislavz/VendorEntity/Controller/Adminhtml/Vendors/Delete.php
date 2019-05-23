@@ -42,7 +42,7 @@ class Delete extends Action
                 /** @var VendorRepository $vendorRepository */
                 $vendorRepository = $this->vendorRepository;
                 $vendorRepository->deleteById($id);
-                $this->messageManager->addSuccessMessage(__('You deleted the question.'));
+                $this->messageManager->addSuccessMessage(__('You deleted the vendor.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
                 // display error message
@@ -52,7 +52,7 @@ class Delete extends Action
             }
         }
         // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a question to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a vendor to delete.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
     }

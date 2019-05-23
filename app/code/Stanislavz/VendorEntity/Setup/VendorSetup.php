@@ -38,7 +38,7 @@ class VendorSetup extends EavSetup
     {
         return [
             'vendor' => [
-                'entity_model' => 'Stanislavz\VendorEntity\Model\ResourceModel\Brand',
+                'entity_model' => 'Stanislavz\VendorEntity\Model\ResourceModel\Vendor',
                 'attribute_model' => 'Magento\Catalog\Model\ResourceModel\Eav\Attribute',
                 'table' => 'vendor_entity',
                 'entity_attribute_collection' => 'Magento\Eav\Model\ResourceModel\Entity\Attribute\Collection',

@@ -14,7 +14,6 @@ class InstallSchema implements InstallSchemaInterface
 {
     /**
      * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
@@ -40,20 +39,20 @@ class InstallSchema implements InstallSchemaInterface
             )->addColumn(
                 'vendor_name',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                64,
+                255,
                 [],
                 'Vendor Name'
             )->addColumn(
                 'vendor_logo',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                64,
+                255,
                 [],
                 'Vendor Logo'
             )
             ->addColumn(
                 'vendor_description',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                64,
+                255,
                 [],
                 'Vendor Description'
             )->addColumn(
@@ -137,7 +136,7 @@ class InstallSchema implements InstallSchemaInterface
             )
             ->addIndex(
                 $installer->getIdxName(
-                    'brand_entity_decimal',
+                    'vendor_entity_decimal',
                     ['entity_id', 'attribute_id', 'store_id'],
                     \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
                 ),
@@ -249,7 +248,7 @@ class InstallSchema implements InstallSchemaInterface
             )
             ->addIndex(
                 $installer->getIdxName(
-                    'brand_entity_int',
+                    'vendor_entity_int',
                     ['entity_id', 'attribute_id', 'store_id'],
                     \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
                 ),
@@ -301,6 +300,97 @@ class InstallSchema implements InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
             )
             ->setComment('Vendor Integer Attribute Backend Table');
+        $installer->getConnection()->createTable($table);
+
+        /**
+         * Create table 'vendor_entity_datetime'
+         */
+        $table = $installer->getConnection()
+            ->newTable($installer->getTable('vendor_entity_datetime'))
+            ->addColumn(
+                'value_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['identity' => true, 'nullable' => false, 'primary' => true],
+                'Value ID'
+            )
+            ->addColumn(
+                'attribute_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+                'Attribute ID'
+            )
+            ->addColumn(
+                'store_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+                'Store ID'
+            )
+            ->addColumn(
+                'entity_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+                'Entity ID'
+            )
+            ->addColumn(
+                'value',
+                \Magento\Framework\DB\Ddl\Table::TYPE_DATETIME,
+                null,
+                [],
+                'Value'
+            )
+            ->addIndex(
+                $installer->getIdxName(
+                    'vendor_entity_datetime',
+                    ['entity_id', 'attribute_id', 'store_id'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
+                ),
+                ['entity_id', 'attribute_id', 'store_id'],
+                ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
+            )
+            ->addIndex(
+                $installer->getIdxName('vendor_entity_datetime', ['attribute_id']),
+                ['attribute_id']
+            )
+            ->addIndex(
+                $installer->getIdxName('vendor_entity_datetime', ['store_id']),
+                ['store_id']
+            )
+            ->addForeignKey(
+                $installer->getFkName(
+                    'vendor_entity_datetime',
+                    'attribute_id',
+                    'eav_attribute',
+                    'attribute_id'
+                ),
+                'attribute_id',
+                $installer->getTable('eav_attribute'),
+                'attribute_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addForeignKey(
+                $installer->getFkName(
+                    'vendor_entity_datetime',
+                    'entity_id',
+                    'vendor_entity',
+                    'entity_id'
+                ),
+                'entity_id',
+                $installer->getTable('vendor_entity'),
+                'entity_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addForeignKey(
+                $installer->getFkName('vendor_entity_datetime', 'store_id', 'store', 'store_id'),
+                'store_id',
+                $installer->getTable('store'),
+                'store_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->setComment('vendor Datetime Attribute Backend Table');
         $installer->getConnection()->createTable($table);
 
         /**

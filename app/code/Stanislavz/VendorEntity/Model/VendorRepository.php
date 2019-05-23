@@ -85,8 +85,8 @@ class VendorRepository implements \Stanislavz\VendorEntity\Api\VendorRepositoryI
     }
 
     /**
-     * @param \Stanislavz\VendorEntity\Api\Data\VendorInterface $vendor
-     * @return \Stanislavz\VendorEntity\Api\Data\VendorInterface
+     * @param VendorInterface $vendor
+     * @return VendorInterface
      * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     public function save(\Stanislavz\VendorEntity\Api\Data\VendorInterface $vendor)
@@ -194,18 +194,18 @@ class VendorRepository implements \Stanislavz\VendorEntity\Api\VendorRepositoryI
         $collection->setCurPage($searchCriteria->getCurrentPage());
         $collection->setPageSize($searchCriteria->getPageSize());
         $vendor = [];
-        /** @var VendorModel $askQuestionModel */
+        /** @var VendorModel $vendorModel */
         foreach ($collection as $vendorModel) {
-            /** @var VendorInterface $askQuestionData */
-            $askQuestionData = $this->dataVendorFactory->create();
+            /** @var VendorInterface $vendorData */
+            $vendorData = $this->dataVendorFactory->create();
             $this->dataObjectHelper->populateWithArray(
-                $askQuestionData,
+                $vendorData,
                 $vendorModel->getData(),
                 'Stanislavz\VendorEntity\Api\Data\VendorInterface'
             );
             $vendor[] = $this->dataObjectProcessor->buildOutputDataArray(
-                $askQuestionData,
-                'Stanislavz\AskQuestion\Api\Data\AskQuestionInterface'
+                $vendorData,
+                'Stanislavz\VendorEntity\Api\Data\VendorInterface'
             );
         }
         $searchResults->setItems($vendor);
