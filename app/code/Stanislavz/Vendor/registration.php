@@ -1,6 +1,6 @@
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Stanislavz_VendorEntity',
+    'Stanislavz_Vendor',
     __DIR__
 );
