@@ -1,10 +1,10 @@
 <?php
 
-namespace Stanislavz\Vendor\Model;
+namespace Stanislavz\Vendor\Api\Data;
 
 /**
  * Interface VendorInterface
- * @package Stanislavz\Vendor\Model
+ * @package Stanislavz\Vendor\Api\Data
  */
 interface VendorInterface
 {

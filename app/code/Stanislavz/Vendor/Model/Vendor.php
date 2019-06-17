@@ -4,6 +4,7 @@ namespace Stanislavz\Vendor\Model;
 
 use Magento\Framework\Model\AbstractModel;
 use Stanislavz\Vendor\Model\ResourceModel\Vendor as VendorResource;
+use Stanislavz\Vendor\Api\Data\VendorInterface;
 
 /**
  * Class Vendor
