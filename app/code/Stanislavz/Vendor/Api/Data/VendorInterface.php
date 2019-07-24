@@ -10,9 +10,9 @@ interface VendorInterface
 {
     /**
      * @param $vendorId
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setId($vendorId): self;
+    public function setId($vendorId);
 
     /**
      * @return int|null
@@ -26,9 +26,9 @@ interface VendorInterface
 
     /**
      * @param $createdAt
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setCreatedAt($createdAt): self;
+    public function setCreatedAt($createdAt);
 
     /**
      * @return string
@@ -37,9 +37,9 @@ interface VendorInterface
 
     /**
      * @param $name
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setName($name): self;
+    public function setName($name);
 
     /**
      * @return string|null
@@ -48,9 +48,9 @@ interface VendorInterface
 
     /**
      * @param string|null $description
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setDescription($description): self;
+    public function setDescription($description);
 
     /**
      * @return string|null
@@ -59,9 +59,9 @@ interface VendorInterface
 
     /**
      * @param string $logo
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setLogo($logo): self;
+    public function setLogo($logo);
 
     /**
      * @return string|null
@@ -70,9 +70,9 @@ interface VendorInterface
 
     /**
      * @param string $additionalData
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setAdditionalData($additionalData): self;
+    public function setAdditionalData($additionalData);
 
     /**
      * @return string
@@ -81,7 +81,7 @@ interface VendorInterface
 
     /**
      * @param string $status
-     * @return VendorInterface
+     * @return \Stanislavz\Vendor\Api\Data\VendorInterface
      */
-    public function setStatus($status): self;
+    public function setStatus($status);
 }

@@ -25,9 +25,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param int|string $vendorId
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setId($vendorId): self
+    public function setId($vendorId)
     {
         $this->setData('vendor_id', $vendorId);
         return $this;
@@ -53,9 +53,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param string $createdAt
-     * @return $this
+     * @return $this|VendorInterface
      */
-    public function setCreatedAt($createdAt): self
+    public function setCreatedAt($createdAt)
     {
         $this->setData('created_at', $createdAt);
         return $this;
@@ -73,9 +73,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param string $name
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setName($name): self
+    public function setName($name)
     {
         $this->getData('name', $name);
         return $this;
@@ -93,9 +93,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param string|null $description
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setDescription($description): self
+    public function setDescription($description)
     {
         $this->getData('description', $description);
         return $this;
@@ -113,9 +113,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param string|null $logo
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setLogo($logo): self
+    public function setLogo($logo)
     {
         $this->getData('logo', $logo);
         return $this;
@@ -133,9 +133,9 @@ class Vendor extends AbstractModel implements VendorInterface
 
     /**
      * @param string|null $additionalData
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setAdditionalData($additionalData): self
+    public function setAdditionalData($additionalData)
     {
         $this->getData('additional_data', $additionalData);
         return $this;
@@ -146,16 +146,16 @@ class Vendor extends AbstractModel implements VendorInterface
      *
      * @return string
      */
-    public function getStatus(): ?string
+    public function getStatus(): string
     {
         return $this->getData('status');
     }
 
     /**
      * @param string $status
-     * @return Vendor
+     * @return $this|VendorInterface
      */
-    public function setStatus($status): self
+    public function setStatus($status)
     {
         $this->getData('status', $status);
         return $this;
