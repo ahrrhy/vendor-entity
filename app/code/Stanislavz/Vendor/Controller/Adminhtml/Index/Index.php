@@ -1,6 +1,6 @@
 <?php
 
-namespace Stanislavz\Vendor\Controller\Adminhtml\Vendors\Index;
+namespace Stanislavz\Vendor\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -8,7 +8,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Class Index
- * @package Stanislavz\Vendor\Controller\Adminhtml\Vendors\Index
+ * @package Stanislavz\Vendor\Controller\Adminhtml\Index
  */
 class Index extends Action
 {
@@ -22,29 +22,24 @@ class Index extends Action
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        Context $context
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
 
     /**
-     * Index action
+     * Product list page
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
     public function execute()
     {
-        echo "welcome"; exit;
-
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu('Stanislavz_Vendor::vendors_vendor');
+        $resultPage->getConfig()->getTitle()->prepend(__('Vendors'));
         return $resultPage;
-    }
-
-    protected function _isAllowed()
-    {
-        return true;
     }
 }
