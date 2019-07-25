@@ -38,7 +38,7 @@ class Index extends Action
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Stanislavz_Vendor::vendors_vendor');
+        $resultPage->setActiveMenu('Magento_Catalog::catalog');
         $resultPage->getConfig()->getTitle()->prepend(__('Vendors'));
         return $resultPage;
     }
