@@ -10,7 +10,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="vendors_listing_data_source" xsi:type="string">
+                <item name="vendor_listing_data_source" xsi:type="string">
                     Stanislavz\Vendor\Model\ResourceModel\Vendor\Grid\CollectionVirtual
                 </item>
             </argument>
