@@ -31,6 +31,7 @@ class Delete extends Action
     ) {
         parent::__construct($context);
         $this->vendorFactory = $vendorFactory;
+        $this->vendorResourceFactory = $vendorResourceFactory;
     }
 
     /**
@@ -40,7 +41,7 @@ class Delete extends Action
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $id = $this->getRequest()->getParam('id');
+        $id = $this->getRequest()->getParam('vendor_id');
         if ($id) {
             try {
                 /** @var Vendor $vendor */
@@ -50,17 +51,17 @@ class Delete extends Action
                 $vendorResource->load($vendor, $id);
                 $vendorResource->delete($vendor);
                 $this->messageManager->addSuccessMessage(__('You deleted the vendor.'));
-                return $resultRedirect->setPath('*/*/');
+                return $resultRedirect->setPath('vendors/index/index');
             } catch (\Exception $e) {
                 // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
                 // go back to edit form
-                return $resultRedirect->setPath('*/*/');
+                return $resultRedirect->setPath('vendors/index/index');
             }
         }
         // display error message
         $this->messageManager->addErrorMessage(__('We can\'t find a vendor to delete.'));
         // go to grid
-        return $resultRedirect->setPath('*/*/');
+        return $resultRedirect->setPath('vendors/index/index');
     }
 }

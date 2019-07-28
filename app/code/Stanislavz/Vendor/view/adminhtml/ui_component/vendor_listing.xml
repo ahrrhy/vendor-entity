@@ -80,7 +80,7 @@
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
                     <item name="provider" xsi:type="string">
-                        questions_listing.questions_listing.vendors_columns_editor</item>
+                        vendor_listing.vendor_listing.vendors_columns_editor</item>
                     <item name="target" xsi:type="string">startEdit</item>
                     <item name="params" xsi:type="array">
                         <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
