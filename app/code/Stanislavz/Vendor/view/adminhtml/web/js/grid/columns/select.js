@@ -8,9 +8,11 @@ define([
         defaults: {
             additionalCustomClass: '',
             customClasses: {
-                pending: 'grid-severity-critical',
-                read: 'grid-severity-minor',
-                answered: 'grid-severity-notice'
+                deleted: 'grid-severity-critical',
+                inactive: 'grid-severity-critical',
+                candidate: 'grid-severity-minor',
+                vacation: 'grid-severity-minor',
+                active: 'grid-severity-notice'
             },
             bodyTmpl: 'Stanislavz_Vendor/grid/cells/text'
         },

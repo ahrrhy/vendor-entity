@@ -31,8 +31,8 @@ class Status implements OptionSourceInterface
                 'value' => Vendor::STATUS_INACTIVE,
             ],
             [
-                'label' => __('Inactive'),
-                'value' => Vendor::STATUS_INACTIVE,
+                'label' => __('Vacation'),
+                'value' => Vendor::STATUS_VACATION,
             ],
             [
                 'label' => __('Candidate'),
