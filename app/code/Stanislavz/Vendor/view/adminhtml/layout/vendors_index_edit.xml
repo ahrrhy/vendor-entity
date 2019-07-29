@@ -26,7 +26,7 @@
             </block>
         </referenceContainer>
         <referenceContainer name="content">
-            <uiComponent name="vendor_listing"/>
+            <uiComponent name="vendor_form"/>
         </referenceContainer>
     </body>
 </page>
