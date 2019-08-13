@@ -12,9 +12,7 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Edit extends Action
 {
-    /**
-     * @var PageFactory
-     */
+    /** @var PageFactory */
     protected $resultPageFactory;
 
     /**
@@ -30,8 +28,6 @@ class Edit extends Action
     }
 
     /**
-     * Product list page
-     *
      * @return \Magento\Backend\Model\View\Result\Page
      */
     public function execute()

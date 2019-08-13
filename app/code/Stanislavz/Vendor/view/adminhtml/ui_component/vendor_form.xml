@@ -22,30 +22,19 @@
         </settings>
         <dataProvider class="Stanislavz\Vendor\Ui\Component\Form\DataProvider" name="vendor_form_data_source">
             <settings>
-                <requestFieldName>vendor_form</requestFieldName>
-                <primaryFieldName>vendor_form</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>vendor_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
     <fieldset name="general">
-        <settings>
-            <label/>
-        </settings>
-        <field name="vendor_id" sortOrder="10" formElement="input">
-            <settings>
-                <dataType>text</dataType>
-                <visible>false</visible>
-                <dataScope>vendor_id</dataScope>
-            </settings>
-        </field>
-        <field name="name" sortOrder="20" formElement="input">
+        <field name="name" sortOrder="20" formElement="text">
             <settings>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Vendor Name</label>
-                <dataScope>name</dataScope>
             </settings>
         </field>
         <field name="description" sortOrder="40" formElement="textarea">

@@ -4,11 +4,14 @@
         <arguments>
             <argument name="modifiers" xsi:type="array">
                 <item name="customField" xsi:type="array">
-                    <item name="class" xsi:type="string">Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\CustomField</item>
+                    <item name="class" xsi:type="string">
+                        Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\CustomField</item>
                     <item name="sortOrder" xsi:type="number">10</item>
                 </item>
                 <item name="importsConfig" xsi:type="array">
-                    <item name="class" xsi:type="string">Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\ImportConfig</item>
+                    <item name="class" xsi:type="string">
+                        Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\ImportConfig
+                    </item>
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
             </argument>

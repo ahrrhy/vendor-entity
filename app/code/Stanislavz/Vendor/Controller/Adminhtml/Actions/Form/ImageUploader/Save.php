@@ -17,9 +17,6 @@ class Save extends Action
     /** @var Filesystem */
     private $fileSystem;
 
-    /** @var LoggerInterface */
-    private $logger;
-
     /**
      * Save constructor.
      * @param Filesystem $fileSystem
@@ -28,11 +25,9 @@ class Save extends Action
      */
     public function __construct(
         Filesystem $fileSystem,
-        LoggerInterface $logger,
         \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
         Context $context
     ) {
-        $this->logger = $logger;
         $this->fileSystem = $fileSystem;
         $this->fileUploaderFactory = $fileUploaderFactory;
         parent::__construct($context);
