@@ -22,13 +22,16 @@
         </settings>
         <dataProvider class="Stanislavz\Vendor\Ui\Component\Form\DataProvider" name="vendor_form_data_source">
             <settings>
-                <requestFieldName>id</requestFieldName>
+                <requestFieldName>vendor_id</requestFieldName>
                 <primaryFieldName>vendor_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
     <fieldset name="general">
-        <field name="name" sortOrder="20" formElement="text">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="name" sortOrder="20" formElement="input">
             <settings>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
@@ -37,13 +40,13 @@
                 <label translate="true">Vendor Name</label>
             </settings>
         </field>
-        <field name="description" sortOrder="40" formElement="textarea">
+        <field name="description" sortOrder="40" formElement="input">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Description</label>
             </settings>
         </field>
-        <field name="additional_data" sortOrder="40" formElement="textarea">
+        <field name="additional_data" sortOrder="40" formElement="input">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Additional Data</label>
@@ -65,23 +68,23 @@
                 </select>
             </formElements>
         </field>
-        <field name="logo" formElement="imageUploader">
-            <settings>
-                <label translate="true">Vendor Logo</label>
-                <componentType>imageUploader</componentType>
-            </settings>
-            <formElements>
-                <imageUploader>
-                    <settings>
-                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
-                        <maxFileSize>2097152</maxFileSize>
-                        <uploaderConfig>
-                            <param xsi:type="string" name="url">vendors/actions_form_imageUploader/save</param>
-                        </uploaderConfig>
-                    </settings>
-                </imageUploader>
-            </formElements>
-        </field>
+<!--        <field name="logo" formElement="imageUploader">-->
+<!--            <settings>-->
+<!--                <label translate="true">Vendor Logo</label>-->
+<!--                <componentType>imageUploader</componentType>-->
+<!--            </settings>-->
+<!--            <formElements>-->
+<!--                <imageUploader>-->
+<!--                    <settings>-->
+<!--                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>-->
+<!--                        <maxFileSize>2097152</maxFileSize>-->
+<!--                        <uploaderConfig>-->
+<!--                            <param xsi:type="string" name="url">vendors/actions_form_imageUploader/save</param>-->
+<!--                        </uploaderConfig>-->
+<!--                    </settings>-->
+<!--                </imageUploader>-->
+<!--            </formElements>-->
+<!--        </field>-->
         <field name="created_at" sortOrder="50" formElement="date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

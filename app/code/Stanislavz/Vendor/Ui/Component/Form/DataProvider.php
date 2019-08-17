@@ -4,8 +4,6 @@ namespace Stanislavz\Vendor\Ui\Component\Form;
 
 use Stanislavz\Vendor\Model\ResourceModel\Vendor\CollectionFactory;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Magento\Ui\DataProvider\Modifier\ModifierInterface;
-use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
 /**
  * Class DataProvider
@@ -21,69 +19,34 @@ class DataProvider extends AbstractDataProvider
     /**
      * @var array
      */
-    protected $loadedData;
+    protected $_loadedData;
 
-    /**
-     * @var PoolInterface
-     */
-    protected $pool;
-
-    /**
-     * Constructor
-     *
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $blockCollectionFactory
-     * @param PoolInterface $pool
-     * @param array $meta
-     * @param array $data
-     */
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $blockCollectionFactory,
-        PoolInterface $pool,
+        CollectionFactory $vendorCollectionFactory,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $blockCollectionFactory->create();
-        $this->pool = $pool;
+        $this->collection = $vendorCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
-    /**
-     * @inheritdoc
-     */
-    public function getMeta()
-    {
-        $meta = parent::getMeta();
-        /** @var ModifierInterface $modifier */
-        foreach ($this->pool->getModifiersInstances() as $modifier) {
-            $meta = $modifier->modifyMeta($meta);
-        }
-        return $meta;
-    }
+
     /**
      * Get data
      *
      * @return array
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getData()
     {
-        if (!isset($this->loadedData)) {
-            $items = $this->collection->getItems();
-            /** @var \Magento\Cron\Model\Schedule $job */
-            foreach ($items as $job) {
-                $this->loadedData[$job->getId()] = $job->getData();
-            }
+        if (isset($this->_loadedData)) {
+            return $this->_loadedData;
         }
-        $data = $this->loadedData;
-        /** @var ModifierInterface $modifier */
-        foreach ($this->pool->getModifiersInstances() as $modifier) {
-            $data = $modifier->modifyData($data);
+        $items = $this->collection->getItems();
+        foreach ($items as $vendor) {
+            $this->_loadedData[$vendor->getId()] = $vendor->getData();
         }
-        return $data;
+        return $this->_loadedData;
     }
 }
