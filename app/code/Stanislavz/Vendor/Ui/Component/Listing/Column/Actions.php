@@ -69,7 +69,20 @@ class Actions extends Column
                                 'title' => __('Delete %1', $title),
                                 'message' => __('Are you sure you want to delete a %1 record?', $title)
                             ]
-                        ]
+                        ],
+                        'edit' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                'vendors/index/edit',
+                                [
+                                    'vendor_id' => $item['vendor_id']
+                                ]
+                            ),
+                            'label' => __('View'),
+//                            'confirm' => [
+//                                'title' => __('Delete %1', $title),
+//                                'message' => __('Are you sure you want to delete a %1 record?', $title)
+//                            ]
+                        ],
                     ];
                 }
             }

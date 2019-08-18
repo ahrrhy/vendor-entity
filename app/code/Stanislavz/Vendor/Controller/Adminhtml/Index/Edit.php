@@ -28,7 +28,7 @@ class Edit extends Action
     }
 
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
