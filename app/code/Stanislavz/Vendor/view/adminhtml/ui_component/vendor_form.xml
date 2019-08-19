@@ -68,23 +68,26 @@
                 </select>
             </formElements>
         </field>
-<!--        <field name="logo" formElement="imageUploader">-->
-<!--            <settings>-->
-<!--                <label translate="true">Vendor Logo</label>-->
-<!--                <componentType>imageUploader</componentType>-->
-<!--            </settings>-->
-<!--            <formElements>-->
-<!--                <imageUploader>-->
-<!--                    <settings>-->
-<!--                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>-->
-<!--                        <maxFileSize>2097152</maxFileSize>-->
-<!--                        <uploaderConfig>-->
-<!--                            <param xsi:type="string" name="url">vendors/actions_form_imageUploader/save</param>-->
-<!--                        </uploaderConfig>-->
-<!--                    </settings>-->
-<!--                </imageUploader>-->
-<!--            </formElements>-->
-<!--        </field>-->
+        <field name="logo" formElement="imageUploader">
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Vendor Logo</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">vendors/actions_form_imageUploader/save</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
         <field name="created_at" sortOrder="50" formElement="date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

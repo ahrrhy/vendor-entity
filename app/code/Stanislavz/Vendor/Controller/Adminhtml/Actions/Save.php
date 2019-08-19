@@ -60,13 +60,15 @@ class Save extends Action
      * @param $data
      * @param null $vendorId
      */
-    private function saveVendor($data, $vendorId = null)
+    private function saveVendor($data, $vendorId = null): void
     {
         /** @var VendorResource $vendorResource */
         $vendorResource = $this->vendorResourceFactory->create();
         /** @var VendorModel $vendorModel */
         $vendorModel = $this->vendorModelFactory->create();
-
+        if (isset($data['logo'])) {
+            $data['logo'] = $data['logo'][0]['url'];
+        }
         // Load Vendor if Vendor is not new
         if ($vendorId !== null) {
             $vendorResource->load($vendorModel, $vendorId, 'vendor_id');

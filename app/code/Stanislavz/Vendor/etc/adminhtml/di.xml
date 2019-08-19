@@ -1,26 +1,20 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-<!--    <virtualType name="Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">-->
-<!--        <arguments>-->
-<!--            <argument name="modifiers" xsi:type="array">-->
-<!--                <item name="customField" xsi:type="array">-->
-<!--                    <item name="class" xsi:type="string">-->
-<!--                        Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\CustomField</item>-->
-<!--                    <item name="sortOrder" xsi:type="number">10</item>-->
-<!--                </item>-->
-<!--                <item name="importsConfig" xsi:type="array">-->
-<!--                    <item name="class" xsi:type="string">-->
-<!--                        Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\ImportConfig-->
-<!--                    </item>-->
-<!--                    <item name="sortOrder" xsi:type="number">20</item>-->
-<!--                </item>-->
-<!--            </argument>-->
-<!--        </arguments>-->
-<!--    </virtualType>-->
-<!--    <type name="Stanislavz\Vendor\Ui\Component\Form\DataProvider">-->
-<!--        <arguments>-->
-<!--            <argument name="pool" xsi:type="object">-->
-<!--                Stanislavz\Vendor\Ui\Component\Form\DataProvider\Modifier\Pool</argument>-->
-<!--        </arguments>-->
-<!--    </type>-->
+    <virtualType name="ImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">vendors/logo/tmp</argument>
+            <argument name="basePath" xsi:type="string">vendors/logo/</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Stanislavz\Vendor\Controller\Adminhtml\Actions\Form\ImageUploader\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ImageUploader</argument>
+        </arguments>
+    </type>
 </config>

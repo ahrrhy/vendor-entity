@@ -2,46 +2,52 @@
 
 namespace Stanislavz\Vendor\Controller\Adminhtml\Actions\Form\ImageUploader;
 
+use Magento\Catalog\Model\ImageUploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem;
-use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Save extends Action
 {
-    /** @var UploaderFactory */
-    private $fileUploaderFactory;
+    /**
+     * @var ImageUploader
+     */
+    private $imageUploader;
 
-    /** @var Filesystem */
-    private $fileSystem;
+    /** @var \Magento\Store\Model\StoreManagerInterface */
+    protected $storeManager;
 
     /**
      * Save constructor.
-     * @param Filesystem $fileSystem
-     * @param UploaderFactory $fileUploaderFactory
+     * @param ImageUploader $imageUploader
+     * @param StoreManagerInterface $storeManager
      * @param Context $context
      */
     public function __construct(
-        Filesystem $fileSystem,
-        \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
+        ImageUploader $imageUploader,
+        StoreManagerInterface $storeManager,
         Context $context
     ) {
-        $this->fileSystem = $fileSystem;
-        $this->fileUploaderFactory = $fileUploaderFactory;
+        $this->imageUploader = $imageUploader;
+        $this->storeManager = $storeManager;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        /** @var \Magento\MediaStorage\Model\File\Uploader $uploader */
-        $uploader = $this->fileUploaderFactory->create(['fileId' => 'logo']);
-        $path = $this->fileSystem->getDirectoryRead(DirectoryList::MEDIA)
-            ->getAbsolutePath('vendors/logo/');
+        $imageId = $this->getRequest()->getParam('param_name', 'logo');
         try {
-            $imageResult = $uploader->save($path);
-            return $imageResult;
+            $imageResult = $this->imageUploader->saveFileToTmpDir($imageId);
+            $imageResult['cookie'] = [
+                'name' => $this->_getSession()->getName(),
+                'value' => $this->_getSession()->getSessionId(),
+                'lifetime' => $this->_getSession()->getCookieLifetime(),
+                'path' => $this->_getSession()->getCookiePath(),
+                'domain' => $this->_getSession()->getCookieDomain(),
+            ];
+
+            return $this->resultFactory->create(ResultFactory::TYPE_JSON)->setData($imageResult);
         } catch (\Exception $e) {
             $imageResult = ['error' => $e->getMessage(), 'error_code' => $e->getCode()];
         }
