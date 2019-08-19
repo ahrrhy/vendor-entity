@@ -17,4 +17,9 @@
             <argument name="imageUploader" xsi:type="object">ImageUploader</argument>
         </arguments>
     </type>
+    <type name="Stanislavz\Vendor\Controller\Adminhtml\Actions\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ImageUploader</argument>
+        </arguments>
+    </type>
 </config>

@@ -2,6 +2,7 @@
 
 namespace Stanislavz\Vendor\Controller\Adminhtml\Actions;
 
+use Magento\Catalog\Model\ImageUploader;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action;
 use Stanislavz\Vendor\Model\ResourceModel\Vendor as VendorResource;
@@ -13,6 +14,11 @@ use Stanislavz\Vendor\Model\Vendor as VendorModel;
  */
 class Save extends Action
 {
+    /**
+     * @var ImageUploader
+     */
+    private $imageUploader;
+
     /**
      * @var \Stanislavz\Vendor\Model\VendorFactory
      */
@@ -26,15 +32,18 @@ class Save extends Action
     /**
      * Save constructor.
      * @param Action\Context $context
+     * @param ImageUploader $imageUploader
      * @param \Stanislavz\Vendor\Model\ResourceModel\VendorFactory $vendorResourceFactory
      * @param \Stanislavz\Vendor\Model\VendorFactory $vendorModelFactory
      */
     public function __construct(
         Action\Context $context,
+        ImageUploader $imageUploader,
         \Stanislavz\Vendor\Model\ResourceModel\VendorFactory $vendorResourceFactory,
         \Stanislavz\Vendor\Model\VendorFactory $vendorModelFactory
     ) {
         parent::__construct($context);
+        $this->imageUploader = $imageUploader;
         $this->vendorResourceFactory = $vendorResourceFactory;
         $this->vendorModelFactory = $vendorModelFactory;
     }
@@ -66,15 +75,21 @@ class Save extends Action
         $vendorResource = $this->vendorResourceFactory->create();
         /** @var VendorModel $vendorModel */
         $vendorModel = $this->vendorModelFactory->create();
-        if (isset($data['logo'])) {
-            $data['logo'] = $data['logo'][0]['url'];
-        }
         // Load Vendor if Vendor is not new
         if ($vendorId !== null) {
             $vendorResource->load($vendorModel, $vendorId, 'vendor_id');
         }
-        $vendorModel->setData($data);
+
         try {
+            if (isset($data['logo'][0]['name']) && isset($data['logo'][0]['tmp_name'])) {
+                $data['logo'] = $data['logo'][0]['name'];
+                $this->imageUploader->moveFileFromTmp($data['logo']);
+            } elseif (isset($data['logo'][0]['name']) && !isset($data['logo'][0]['tmp_name'])) {
+                $data['logo'] = $data['logo'][0]['name'];
+            } else {
+                $data['logo'] = null;
+            }
+            $vendorModel->setData($data);
             $vendorResource->save($vendorModel);
         } catch (\Exception $exception) {
             $this->messageManager->addExceptionMessage($exception);
