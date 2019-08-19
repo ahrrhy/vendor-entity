@@ -12,19 +12,13 @@ use Magento\Store\Model\StoreManagerInterface;
  */
 class DataProvider extends AbstractDataProvider
 {
-    /**
-     * @var \Stanislavz\Vendor\Model\ResourceModel\Vendor\Collection
-     */
+    /** @var \Stanislavz\Vendor\Model\ResourceModel\Vendor\Collection */
     protected $collection;
 
-    /**
-     * @var StoreManagerInterface
-     */
+    /** @var StoreManagerInterface */
     private $storeManager;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $_loadedData = [];
 
     /**

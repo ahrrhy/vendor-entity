@@ -81,13 +81,16 @@ class Save extends Action
         }
 
         try {
-            if (isset($data['logo'][0]['name']) && isset($data['logo'][0]['tmp_name'])) {
-                $data['logo'] = $data['logo'][0]['name'];
-                $this->imageUploader->moveFileFromTmp($data['logo']);
-            } elseif (isset($data['logo'][0]['name']) && !isset($data['logo'][0]['tmp_name'])) {
-                $data['logo'] = $data['logo'][0]['name'];
-            } else {
+            if (empty($data['logo'][0])) {
                 $data['logo'] = null;
+            } else {
+                if (strpos($data['logo'][0]['url'], 'tmp') !== false) {
+                    $data['logo'] = $data['logo'][0]['name'];
+                    $this->imageUploader->moveFileFromTmp($data['logo']);
+                }
+                if (isset($data['logo'][0]['image'])) {
+                    $data['logo'] = $data['logo'][0]['image'];
+                }
             }
             $vendorModel->setData($data);
             $vendorResource->save($vendorModel);

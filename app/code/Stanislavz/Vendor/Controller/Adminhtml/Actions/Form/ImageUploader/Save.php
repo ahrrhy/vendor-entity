@@ -8,6 +8,10 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Class Save
+ * @package Stanislavz\Vendor\Controller\Adminhtml\Actions\Form\ImageUploader
+ */
 class Save extends Action
 {
     /**
@@ -34,6 +38,9 @@ class Save extends Action
         parent::__construct($context);
     }
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         $imageId = $this->getRequest()->getParam('param_name', 'logo');
