@@ -39,7 +39,8 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             self::ATTRIBUTE_NAME,
             [
-                'type' => 'text',
+                'type' => 'int',
+                'group' => 'general',
                 'backend' => '',
                 'frontend' => '',
                 'label' => 'Vendor',

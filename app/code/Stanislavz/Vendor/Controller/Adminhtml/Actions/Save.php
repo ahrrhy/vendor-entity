@@ -84,7 +84,8 @@ class Save extends Action
             if (empty($data['logo'][0])) {
                 $data['logo'] = null;
             } else {
-                if (strpos($data['logo'][0]['url'], 'tmp') !== false) {
+                if (isset($data['logo'][0]['url'])
+                    && strpos($data['logo'][0]['url'], 'tmp') !== false) {
                     $data['logo'] = $data['logo'][0]['name'];
                     $this->imageUploader->moveFileFromTmp($data['logo']);
                 }
