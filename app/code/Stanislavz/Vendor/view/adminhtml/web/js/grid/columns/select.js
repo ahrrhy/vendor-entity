@@ -8,10 +8,7 @@ define([
         defaults: {
             additionalCustomClass: '',
             customClasses: {
-                deleted: 'grid-severity-critical',
                 inactive: 'grid-severity-critical',
-                candidate: 'grid-severity-minor',
-                vacation: 'grid-severity-minor',
                 active: 'grid-severity-notice'
             },
             bodyTmpl: 'Stanislavz_Vendor/grid/cells/text'
