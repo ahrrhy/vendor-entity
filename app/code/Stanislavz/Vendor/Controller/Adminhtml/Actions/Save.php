@@ -79,19 +79,18 @@ class Save extends Action
         if ($vendorId !== null) {
             $vendorResource->load($vendorModel, $vendorId, 'vendor_id');
         }
-
         try {
             if (empty($data['logo'][0])) {
                 $data['logo'] = null;
-            }
-            if (isset($data['logo'][0]['name'])) {
-                if (isset($data['logo'][0]['url']) && strpos($data['logo'][0]['url'], 'tmp') !== false) {
+            } else {
+                if (isset($data['logo'][0]['url'])
+                    && strpos($data['logo'][0]['url'], 'tmp') !== false) {
+                    $data['logo'] = $data['logo'][0]['name'];
                     $this->imageUploader->moveFileFromTmp($data['logo']);
                 }
-                $data['logo'] = $data['logo'][0]['name'];
-            }
-            if (isset($data['logo'][0]['image'])) {
-                $data['logo'] = $data['logo'][0]['image'];
+                if (isset($data['logo'][0]['image'])) {
+                    $data['logo'] = $data['logo'][0]['image'];
+                }
             }
             $vendorModel->setData($data);
             $vendorResource->save($vendorModel);

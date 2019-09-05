@@ -1,0 +1,7 @@
+<?php
+/** @var \Stanislavz\Vendor\Block\VendorData $block */
+$hello = $block->writeHello();
+
+if ($hello !== '' && $hello !== false) : ?>
+    <h2><?= $hello; ?></h2>
+<?php endif;
