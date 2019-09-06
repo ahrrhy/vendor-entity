@@ -67,7 +67,6 @@ class Options extends AbstractSource
     {
         /** @var Collection $vendorsCollection */
         $vendorsCollection = $this->vendorCollectionFactory->create();
-        $vendorsCollection->addFieldToFilter('status', ['neq' => Vendor::STATUS_DELETED]);
         $vendorsCollection->load();
 
         return $vendorsCollection->getItems();

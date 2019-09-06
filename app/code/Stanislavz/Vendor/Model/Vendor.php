@@ -13,10 +13,9 @@ use Stanislavz\Vendor\Api\Data\VendorInterface;
 class Vendor extends AbstractModel implements VendorInterface
 {
     public const STATUS_ACTIVE = 'active';
-    public const STATUS_DELETED = 'deleted';
     public const STATUS_INACTIVE = 'inactive';
-    public const STATUS_VACATION = 'vacation';
-    public const STATUS_CANDIDATE = 'candidate';
+    public const VENDOR_LOGO_TMP_DIR = 'vendors/logo/tmp';
+    public const VENDOR_LOGO_BASE_DIR = 'vendors/logo/';
 
     protected function _construct()
     {

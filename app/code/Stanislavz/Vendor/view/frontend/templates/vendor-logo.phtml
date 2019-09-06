@@ -1,7 +1,10 @@
 <?php
 /** @var \Stanislavz\Vendor\Block\VendorData $block */
-$hello = $block->writeHello();
-
-if ($hello !== '' && $hello !== false) : ?>
-    <h2><?= $hello; ?></h2>
+$vendor = $block->getVendor();
+if ($vendor) : ?>
+    <p class="vendor-logo-box">
+        <img src="<?= $block->getVendorLogo(); ?>"
+             alt="<?= $vendor->getName(); ?>"
+             class="vendor-logo">
+    </p>
 <?php endif;
