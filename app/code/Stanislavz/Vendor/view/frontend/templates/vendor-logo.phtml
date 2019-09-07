@@ -2,9 +2,10 @@
 /** @var \Stanislavz\Vendor\Block\VendorData $block */
 $vendor = $block->getVendor();
 if ($vendor) : ?>
-    <p class="vendor-logo-box">
+    <p class="product vendor-logo">
         <img src="<?= $block->getVendorLogo(); ?>"
              alt="<?= $vendor->getName(); ?>"
-             class="vendor-logo">
+             class="tooltip-toggle">
+        <span class="tooltip-content">Vendor: <?= $vendor->getName(); ?></span>
     </p>
 <?php endif;
