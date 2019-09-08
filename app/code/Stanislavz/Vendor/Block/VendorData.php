@@ -2,19 +2,21 @@
 
 namespace Stanislavz\Vendor\Block;
 
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\Helper\Data;
-use Magento\Framework\View\Element\Template;
+use Magento\Catalog\Model\Product;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Framework\View\Element\Template;
+use Magento\Store\Model\StoreManagerInterface;
 use Stanislavz\Vendor\Model\ResourceModel\Vendor as VendorResource;
+use Stanislavz\Vendor\Model\ResourceModel\Vendor\Collection as VendorCollection;
 use Stanislavz\Vendor\Model\Vendor as VendorModel;
 
 /**
  * Class VendorData
  * @package Stanislavz\Vendor\Block
  */
-class VendorData extends Template
+class VendorData extends Template implements ArgumentInterface
 {
     /** @var StoreManagerInterface */
     private $storeManager;
@@ -31,6 +33,9 @@ class VendorData extends Template
     /** @var \Stanislavz\Vendor\Model\ResourceModel\VendorFactory */
     private $vendorResourceFactory;
 
+    /** @var \Stanislavz\Vendor\Model\ResourceModel\Vendor\CollectionFactory */
+    private $vendorCollectionFactory;
+
     /** @var VendorModel */
     private $vendor;
 
@@ -39,6 +44,7 @@ class VendorData extends Template
      * @param Template\Context $context
      * @param Data $catalogHelper
      * @param StoreManagerInterface $storeManager
+     * @param VendorResource\CollectionFactory $vendorCollectionFactory
      * @param \Stanislavz\Vendor\Model\VendorFactory $vendorModelFactory
      * @param \Stanislavz\Vendor\Model\ResourceModel\VendorFactory $vendorResourceFactory
      * @param array $data
@@ -47,6 +53,7 @@ class VendorData extends Template
         Template\Context $context,
         Data $catalogHelper,
         StoreManagerInterface $storeManager,
+        \Stanislavz\Vendor\Model\ResourceModel\Vendor\CollectionFactory $vendorCollectionFactory,
         \Stanislavz\Vendor\Model\VendorFactory $vendorModelFactory,
         \Stanislavz\Vendor\Model\ResourceModel\VendorFactory $vendorResourceFactory,
         array $data = []
@@ -55,6 +62,7 @@ class VendorData extends Template
         $this->storeManager = $storeManager;
         $this->vendorModelFactory = $vendorModelFactory;
         $this->vendorResourceFactory = $vendorResourceFactory;
+        $this->vendorCollectionFactory = $vendorCollectionFactory;
         $this->catalogHelper = $catalogHelper;
     }
 
@@ -109,5 +117,24 @@ class VendorData extends Template
         }
 
         return $path;
+    }
+
+    /**
+     * @param \Magento\Eav\Model\Entity\Collection\AbstractCollection $products
+     * @return VendorCollection
+     */
+    public function getVendorsFromProducts($products)
+    {
+        $vendorIds = [];
+        /** @var  $product */
+        foreach ($products as $product) {
+            $vendorIds[] = $product->getVendor();
+        }
+        /** @var VendorCollection $vendors */
+        $vendors = $this->vendorCollectionFactory->create()
+            ->addFieldToFilter('vendor_id', $vendorIds)
+            ->load();
+
+        return $vendors;
     }
 }
