@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--@Todo create new menu-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Stanislavz_Vendor::vendors"
+             title="Vendors"
+             translate="title"
+             module="Stanislavz_Vendor"
+             parent="Magento_Catalog::catalog"
+             sortOrder="150"
+             resource="Magento_Backend::admin"/>
+        <add id="Stanislavz_Vendor::vendors_edit"
+             title="Vendors"
+             translate="title"
+             module="Stanislavz_Vendor"
+             parent="Stanislavz_Vendor::vendors"
+             sortOrder="10"
+             action="vendors/index/"
+             resource="Magento_Backend::admin"/>
+    </menu>
+</config>

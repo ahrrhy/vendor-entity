@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">vendor_form.vendor_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Stanislavz\Vendor\Block\Adminhtml\Vendor\Edit\SaveButton"/>
+        </buttons>
+        <namespace>vendor_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>vendor_form.vendor_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="vendor_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="vendors/actions/save"/>
+        </settings>
+        <dataProvider class="Stanislavz\Vendor\Ui\Component\Form\DataProvider" name="vendor_form_data_source">
+            <settings>
+                <requestFieldName>vendor_id</requestFieldName>
+                <primaryFieldName>vendor_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="name" sortOrder="20" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Vendor Name</label>
+            </settings>
+        </field>
+        <field name="description" sortOrder="40" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+            </settings>
+        </field>
+        <field name="additional_data" sortOrder="40" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Additional Data</label>
+            </settings>
+        </field>
+        <field name="status" sortOrder="30" formElement="select">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Stanislavz\Vendor\Model\Config\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="logo" formElement="imageUploader">
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Vendor Logo</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">vendors/actions_form_imageUploader/save</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="created_at" sortOrder="50" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="options" xsi:type="array">
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

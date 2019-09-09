@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Stanislavz\Vendor\Model\ResourceModel\Vendor\Grid\CollectionVirtual"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">stanislavz_vendor</argument>
+            <argument name="resourceModel" xsi:type="string">Stanislavz\Vendor\Model\ResourceModel\Vendor</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vendor_listing_data_source" xsi:type="string">
+                    Stanislavz\Vendor\Model\ResourceModel\Vendor\Grid\CollectionVirtual
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
